@@ -57,7 +57,7 @@ cd ~
 git clone https://github.com/who-biz/verus-android-wallet-sdk.git
 cd verus-android-wallet-sdk
 
-# stop here and open this repo in Android studio, to download gradle with proper versions
+# stop here and open verus-android-wallet-sdk repo in Android studio, to download gradle with proper versions
 
 # then run gradle wrapper to generate local Maven artifacts
 ./gradlew publishToMavenLocal
