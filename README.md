@@ -36,7 +36,11 @@ THIS IS EXPERIMENTAL SOFTWARE AND IT IS PROVIDED "AS IS" AND ANY EXPRESSED OR IM
 
 ## Android (on Ubuntu)
 
-0. Clone GitHub repository, and `cd` into it
+0. Clone this repo (branch maven-verus)
+
+```
+git clone https://github.com/who-biz/Verus-mobile.git --branch maven-verus
+```
 
 1. Install Android Studio (Android SDK 34)
 
@@ -46,7 +50,25 @@ THIS IS EXPERIMENTAL SOFTWARE AND IT IS PROVIDED "AS IS" AND ANY EXPRESSED OR IM
 
 4. Enable corepack with `corepack enable` for access to `yarn` commands
 
-5. Run `yarn install` then `yarn android`
+5. Clone `verus-android-wallet-sdk` repository, build and publish Maven artifacts locally
+
+```
+cd ~
+git clone https://github.com/who-biz/verus-android-wallet-sdk.git
+cd verus-android-wallet-sdk
+
+# stop here and open this repo in Android studio, to download gradle with proper versions
+
+# then run gradle wrapper to generate local Maven artifacts
+./gradlew publishToMavenLocal
+
+# this will install the artifacts locally in ~/.m2/repository/com/github/who-biz/verus-android-sdk` etc by module
+```
+
+6. `cd` back into `Verus-mobile` directory
+
+
+7. Run `yarn install` then `yarn android`
 
 ## iOS (on macOS)
 
