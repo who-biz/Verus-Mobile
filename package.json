@@ -16,8 +16,10 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@bitgo/blake2b-wasm": "https://github.com/michaeltout/blake2b-wasm/",
     "@bitgo/utxo-lib": "git+https://github.com/VerusCoin/BitGoJS.git#7c754d4a5920198d9fe6827d3e23bd5cf431f264",
     "@ethersproject/signing-key": "5.0.5",
+    "@react-native-async-storage/async-storage": "git+https://github.com/who-biz/async-storage.git#verus",
     "@react-native-camera-roll/camera-roll": "5.0.4",
     "@react-native-community/cli": "7.0.3",
     "@react-native-community/clipboard": "1.5.1",
@@ -40,6 +42,7 @@
     "bignumber.js": "9.0.1",
     "bip39": "git+https://github.com/michaeltout/bip39.git",
     "bitgo-utxo-lib": "https://github.com/VerusCoin/bitgo-utxo-lib.git#react-native",
+    "blake2b-wasm": "https://github.com/michaeltout/blake2b-wasm/",
     "browserify-zlib": "0.1.4",
     "buffer": "6.0.3",
     "coinselect": "3.1.11",
@@ -113,6 +116,7 @@
     "timers-browserify": "1.0.1",
     "tty-browserify": "0.0.0",
     "tx-builder": "0.18.0",
+    "typeforce": "git+https://github.com/michaeltout/typeforce.git",
     "url": "0.10.1",
     "utf8": "3.0.0",
     "util": "0.10.3",
