@@ -50,11 +50,11 @@ THIS IS EXPERIMENTAL SOFTWARE AND IT IS PROVIDED "AS IS" AND ANY EXPRESSED OR IM
 
 4. Enable corepack with `corepack enable` for access to `yarn` commands
 
-5. Clone `verus-android-wallet-sdk`, branch `legacy-v1.2.1-beta04` repository, build and publish Maven artifacts locally
+5. Clone `verus-android-wallet-sdk`, branch `legacy-sdk-v1.2.1-beta04` repository, build and publish Maven artifacts locally
 
 ```
 cd ~
-git clone https://github.com/who-biz/verus-android-wallet-sdk.git --branch legacy-v.1.2.1-beta04
+git clone https://github.com/who-biz/verus-android-wallet-sdk.git --branch legacy-sdk-v.1.2.1-beta04
 cd verus-android-wallet-sdk
 
 # stop here and open verus-android-wallet-sdk repo in Android studio, to download gradle with proper versions
