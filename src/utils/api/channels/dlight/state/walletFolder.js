@@ -1,4 +1,3 @@
-//import VerusLightClient from 'react-native-verus-light-client'
 import VerusLightClient from 'react-native-verus'
 
 /**

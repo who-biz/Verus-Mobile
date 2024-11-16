@@ -1,4 +1,3 @@
-//import VerusLightClient from 'react-native-verus-light-client'
 import VerusLightClient from 'react-native-verus'
 
 // Uses a coin's ticker symbol (id), protocol (btc || vrsc)

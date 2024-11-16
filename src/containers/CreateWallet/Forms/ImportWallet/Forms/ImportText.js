@@ -27,9 +27,9 @@ export default function ImportText({
   const [showSeed, setShowSeed] = useState(false);
   const [scanQr, setScanQr] = useState(qr === true);
 
-  const handleScan = (seed) => {
+  const handleScan = (codes) => {
     setScanQr(false)
-    setImportedSeed(seed)
+    setImportedSeed(codes[0])
   }
 
   const handleImport = () => {
@@ -41,7 +41,7 @@ export default function ImportText({
   return scanQr ? (
     <ScanSeed
       cancel={() => setScanQr(false)}
-      onScan={(seed) => handleScan(seed)}
+      onScan={(codes) => handleScan(codes)}
     />
   ) : (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -77,7 +77,7 @@ export default function ImportText({
               width: 280,
             }}>
             {
-              "Enter your key or mnemonic seed into the text box below, then press 'import' to create your wallet."
+              "Enter your key or mnemonic seed into the text box below, then press 'import'."
             }
           </Paragraph>
           <View style={Styles.wideCenterBlock}>
@@ -101,13 +101,13 @@ export default function ImportText({
             />
           </View>
           <Button
-            color={Colors.primaryColor}
+            textColor={Colors.primaryColor}
             onPress={() => setShowSeed(!showSeed)}
             disabled={importedSeed == null || importedSeed.length == 0}>{`${
             showSeed ? 'Hide' : 'Show'
           } Seed`}</Button>
           <Button
-            color={Colors.primaryColor}
+            textColor={Colors.primaryColor}
             style={{marginTop: 8}}
             onPress={() => setScanQr(true)}>
             {'Scan QR'}
