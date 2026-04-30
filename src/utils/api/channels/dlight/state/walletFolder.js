@@ -28,7 +28,7 @@ export const setConfig = async (coinId, coinProto, accountHash, host, port, seed
      */
     //TODO: birthday below can be removed, and provided as argument to func, but only once we are 
     // capable of discrete 'scan-from' height (daemon or lwd need to provide a saplingOutput index)
-    const birthday = (coinId === "VRSC") ? VRSC_SAPLING_ACTIVATION_HEIGHT : PBAAS_SAPLING_ACTIVATION_HEIGHT;
+    const birthday = (coinId === "VRSC") ? 4000000 : PBAAS_SAPLING_ACTIVATION_HEIGHT;
     const config = {
       mnemonicSeed: seed,
       extsk: extsk ? await Tools.bech32Decode(extsk) : extsk,
