@@ -88,8 +88,8 @@ cd verus-android-wallet-sdk
 
 # stop here and open verus-android-wallet-sdk repo in Android studio, to download gradle with proper versions
 
-# On Ubuntu 22.04 and later, if 'python' cmd does not map to python2.7, create a local.properties, so rust can locate it
-echo "rust.pythonCommand=/usr/bin/python2" >> local.properties
+# Create a 'local.properties' that maps to your python command (change if not python3)
+echo "rust.pythonCommand=/usr/bin/python3" >> local.properties
 
 # then run gradle wrapper to generate local Maven artifacts
 ./gradlew publishToMavenLocal
