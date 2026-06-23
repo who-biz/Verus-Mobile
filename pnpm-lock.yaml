@@ -338,7 +338,7 @@ importers:
         version: https://codeload.github.com/VerusCoin/react-native-vector-icons/tar.gz/8e7de391c452401b0e2bf0da695aa0edeb8b323d
       react-native-verus:
         specifier: github:who-biz/react-native-verus#scan-from
-        version: https://codeload.github.com/who-biz/react-native-verus/tar.gz/b764e81449702e62c5fd2dc81b86e08923578bcb(react-native@0.71.19(@babel/core@7.25.7)(react@18.2.0))
+        version: https://codeload.github.com/who-biz/react-native-verus/tar.gz/4883b9d69fb379dd7a2678f66534d697964b72c0(react-native@0.71.19(@babel/core@7.25.7)(react@18.2.0))
       react-native-vision-camera:
         specifier: 4.3.1
         version: 4.3.1(react-native-reanimated@2.14.4(@babel/core@7.25.7)(react-native@0.71.19(@babel/core@7.25.7)(react@18.2.0))(react@18.2.0))(react-native@0.71.19(@babel/core@7.25.7)(react@18.2.0))(react@18.2.0)
@@ -4579,8 +4579,8 @@ packages:
     version: 8.1.0
     hasBin: true
 
-  react-native-verus@https://codeload.github.com/who-biz/react-native-verus/tar.gz/b764e81449702e62c5fd2dc81b86e08923578bcb:
-    resolution: {gitHosted: true, integrity: sha512-zYrrw9ffaplDMzXOlC0bKDnykmyHBDgIp+31ClzIC0wpHc4vFbJ0PjIOGpSuJ3uLMtSVSTVsMhhKT8IIfl4HMg==, tarball: https://codeload.github.com/who-biz/react-native-verus/tar.gz/b764e81449702e62c5fd2dc81b86e08923578bcb}
+  react-native-verus@https://codeload.github.com/who-biz/react-native-verus/tar.gz/4883b9d69fb379dd7a2678f66534d697964b72c0:
+    resolution: {gitHosted: true, integrity: sha512-atdRM88lLjxIMKgdhi7iFWB3XNAt8Y6pFegBmgnp6GrnGe+wzYzGB70MzdQrKo8sPGBtKr54NvI0VnfqlVUrpA==, tarball: https://codeload.github.com/who-biz/react-native-verus/tar.gz/4883b9d69fb379dd7a2678f66534d697964b72c0}
     version: 0.6.10
     peerDependencies:
       react-native: 0.71.19
@@ -11018,7 +11018,7 @@ snapshots:
       prop-types: 15.8.1
       yargs: 16.2.0
 
-  react-native-verus@https://codeload.github.com/who-biz/react-native-verus/tar.gz/b764e81449702e62c5fd2dc81b86e08923578bcb(react-native@0.71.19(@babel/core@7.25.7)(react@18.2.0)):
+  react-native-verus@https://codeload.github.com/who-biz/react-native-verus/tar.gz/4883b9d69fb379dd7a2678f66534d697964b72c0(react-native@0.71.19(@babel/core@7.25.7)(react@18.2.0)):
     dependencies:
       biggystring: 4.2.3
       react-native: 0.71.19(@babel/core@7.25.7)(react@18.2.0)
