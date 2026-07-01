@@ -77,7 +77,7 @@ class CreateSeed extends Component {
       this.setState({ guessErrors })
 
       if (!errors) {
-        this.props.setSeed(this.state.newSeed, this.props.channel)
+        this.props.setSeed(this.state.newSeed, this.props.channel, true)
         this.props.cancel()
       }
     })

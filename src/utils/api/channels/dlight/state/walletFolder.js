@@ -9,12 +9,13 @@ import { DLIGHT_PRIVATE } from '../../../../constants/intervalConstants'
  * @param {String} accountHash The account hash of the user account to create the wallet for
  * @param {String} host The host address for the lightwalletd server to connect to
  * @param {Integer} port The port of the lightwalletd server to connect to
- * @param {Integer} numAddresses The number of addresses (address accounts) to initialize this wallet with
- * @param {String} seed The HDSeed for the wallet in question
+ * @param {String} seed The HDSeed for the wallet in question (can be omitted if extsk is present)
+ * @param {String} extsk An Extended Spending Key for the wallet in question (can be omitted if seed present)
+ * @param {Boolean} scanFromTip Whether to scan from tip (latest checkpoint presently), or full scan
  */
-export const initializeWallet = async (coinId, coinProto, accountHash, host, port, seed, extsk) => {
+export const initializeWallet = async (coinId, coinProto, accountHash, host, port, seed, extsk, scanFromTip) => {
      try {
-       const config = await setConfig(coinId, coinProto, accountHash, host, port, seed, extsk, true);
+       const config = await setConfig(coinId, coinProto, accountHash, host, port, seed, extsk, true, scanFromTip);
        const sync = await makeSynchronizer(config);
        return sync;
      } catch (error) {
@@ -22,13 +23,11 @@ export const initializeWallet = async (coinId, coinProto, accountHash, host, por
      }
 };
 
-export const setConfig = async (coinId, coinProto, accountHash, host, port, seed, extsk, newWallet) => {
+export const setConfig = async (coinId, coinProto, accountHash, host, port, seed, extsk, newWallet, scanFromTip) => {
     /**
      * @type {InitializerConfig}
      */
-    //TODO: birthday below can be removed, and provided as argument to func, but only once we are 
-    // capable of discrete 'scan-from' height (daemon or lwd need to provide a saplingOutput index)
-    const birthday = (coinId === "VRSC") ? 4050000 : PBAAS_SAPLING_ACTIVATION_HEIGHT;
+    const birthday = scanFromTip ? 4050000 : VRSC_SAPLING_ACTIVATION_HEIGHT;
     const config = {
       mnemonicSeed: seed,
       extsk: extsk ? await Tools.bech32Decode(extsk) : extsk,
@@ -48,10 +47,15 @@ export const setConfig = async (coinId, coinProto, accountHash, host, port, seed
  * @param {String} coinId The chainticker to create a light wallet client for
  * @param {String} coinProto The protocol the coin is based on (e.g. 'btc' || 'vrsc')
  * @param {String} accountHash The account hash of the user account to create the wallet for
+ * @param {String} host The host address for the lightwalletd server to connect to
+ * @param {Integer} port The port of the lightwalletd server to connect to
+ * @param {String} seed The HDSeed for the wallet in question (can be omitted if extsk is present)
+ * @param {String} extsk An Extended Spending Key for the wallet in question (can be omitted if seed present)
+ * @param {Boolean} scanFromTip Whether to scan from tip (latest checkpoint presently), or full scan
  */
-export const openWallet = async (coinId, coinProto, accountHash, host, port, seed, extsk) => {
+export const openWallet = async (coinId, coinProto, accountHash, host, port, seed, extsk, scanFromTip) => {
   try {
-    const config = await setConfig(coinId, coinProto, accountHash, host, port, seed, extsk, false);
+    const config = await setConfig(coinId, coinProto, accountHash, host, port, seed, extsk, false, scanFromTip);
     const sync = await makeSynchronizer(config);
     return sync;
 

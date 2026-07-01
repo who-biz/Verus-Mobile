@@ -75,7 +75,7 @@ class ImportSeed extends Component {
           );
         } else {
           this.setState({ loading: false });
-          this.props.setSeed(this.state.seed, this.props.channel);
+          this.props.setSeed(this.state.seed, this.props.channel, false);
           this.props.cancel();
         }
       }

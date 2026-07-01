@@ -20,6 +20,7 @@ import {
 } from "../../../../../utils/constants/storeType";
 import { requestSeeds } from '../../../../../utils/auth/authBox'
 import { DLIGHT_PRIVATE } from '../../../../../utils/constants/intervalConstants'
+import { getZSeedInitialScanFromTip, clearZSeedInitialScanFromTip } from "../../../../../utils/asyncStore/asyncStore";
 
 // Initializes dlight wallet by either creating a backend native wallet and opening it or just opening it
 export const initDlightWallet = async (coinObj) => {
@@ -68,8 +69,10 @@ export const initDlightWallet = async (coinObj) => {
         mnemonicSeed = seed;
       }
 
+      const scanFromTip = await getZSeedInitialScanFromTip();
+      
       initializationPromises = [
-          await initializeWallet(id, proto, accountHash, lightWalletEndpointArr[0], Number(lightWalletEndpointArr[1]), mnemonicSeed, extsk),
+          await initializeWallet(id, proto, accountHash, lightWalletEndpointArr[0], Number(lightWalletEndpointArr[1]), mnemonicSeed, extsk, scanFromTip),
           getAddresses(extsk, mnemonicSeed, id)
       ];
 
@@ -79,6 +82,7 @@ export const initDlightWallet = async (coinObj) => {
       if (lightWalletEndpointArr[1] == null || isNaN(lightWalletEndpointArr[1]))
         throw new Error(id + " lightwallet was requested with port " + lightWalletEndpointArr[1], " this is not a valid port.")
 
+      //TODO: remove duplicated logic below
       const seed = (await requestSeeds())[DLIGHT_PRIVATE];
       let mnemonicSeed = "";
       let extsk = "";
@@ -88,9 +92,10 @@ export const initDlightWallet = async (coinObj) => {
       } else {
         mnemonicSeed = seed;
       }
-
+      const scanFromTip = await getZSeedInitialScanFromTip();
+      
       initializationPromises = [
-          await openWallet(id, proto, accountHash, lightWalletEndpointArr[0], Number(lightWalletEndpointArr[1]), mnemonicSeed, extsk),
+          await openWallet(id, proto, accountHash, lightWalletEndpointArr[0], Number(lightWalletEndpointArr[1]), mnemonicSeed, extsk, scanFromTip),
           getAddresses(extsk, mnemonicSeed, id)
       ]
     } else {
@@ -107,7 +112,7 @@ export const initDlightWallet = async (coinObj) => {
 
   return new Promise((resolve) => {
     resolveSequentially(initializationPromises)
-    .then(res => {
+    .then(async (res) => {
       dispatch({
         type: INIT_DLIGHT_CHANNEL_START,
         payload: { chainTicker: id }
@@ -117,6 +122,8 @@ export const initDlightWallet = async (coinObj) => {
         type: SET_ADDRESSES,
         payload: { chainTicker: id, channel: DLIGHT_PRIVATE, addresses: [ res.pop().result ]  }
       });
+
+      await clearZSeedInitialScanFromTip();
 
       resolve()
     })

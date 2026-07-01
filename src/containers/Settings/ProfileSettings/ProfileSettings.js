@@ -34,7 +34,7 @@ import {
   canShowSeed,
 } from "../../../actions/actions/channels/dlight/dispatchers/AlertManager";
 import { createAlert, resolveAlert } from "../../../actions/actions/alert/dispatchers/alert";
-import { checkPinForUser } from "../../../utils/asyncStore/asyncStore";
+import { checkPinForUser, setZSeedInitialScanFromTip } from "../../../utils/asyncStore/asyncStore";
 import { ENABLE_DLIGHT, APP_VERSION, WYRE_ACCESSIBLE } from '../../../../env/index'
 import { dlightEnabled } from "../../../utils/enabledChannels";
 import SetupSeedModal from "../../../components/SetupSeedModal/SetupSeedModal";
@@ -327,7 +327,7 @@ class ProfileSettings extends Component {
     })
   }
 
-  addZSeed = (seed, channel) => {
+  addZSeed = (seed, channel, isNewSeed = false) => {
     this.openPasswordCheck((result) => {
       if (result.valid) {
         this.closePasswordDialog(async () => {
@@ -338,7 +338,9 @@ class ProfileSettings extends Component {
               seed,
               result.password
             );
-  
+
+            await setZSeedInitialScanFromTip(isNewSeed);
+
             createAlert(
               "Success",
               `Z Seed set for ${
@@ -482,7 +484,7 @@ class ProfileSettings extends Component {
             cancel={() => {
               this.setState({ privateSeedModalOpen: false });
             }}
-            setSeed={(seed, channel) => this.addZSeed(seed, channel)}
+            setSeed={(seed, channel, isNewSeed) => this.addZSeed(seed, channel, isNewSeed)}
             channel={DLIGHT_PRIVATE}
           />
           {this.state.keyDerivationVersionModalOpen && (

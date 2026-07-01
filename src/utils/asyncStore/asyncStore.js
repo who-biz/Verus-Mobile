@@ -15,6 +15,26 @@ const vc = require('version_compare')
 export const PIN = "pin"
 
 /**
+  * The functions below are strictly for indicating (with persistence) to zSeed init
+  * whether we should fully rescan the blockchain, or sync from chaintip (presently
+  * this is limited to most recent checkpoint in SDK resources).
+  */
+
+export const ZSEED_INITIAL_SCAN_FROM_TIP = "zseed_initial_scan_from_tip";
+
+export const setZSeedInitialScanFromTip = (scanFromTip) =>
+  AsyncStorage.setItem(
+    ZSEED_INITIAL_SCAN_FROM_TIP,
+    scanFromTip ? "true" : "false"
+  );
+
+export const getZSeedInitialScanFromTip = async () =>
+  (await AsyncStorage.getItem(ZSEED_INITIAL_SCAN_FROM_TIP)) === "true";
+
+export const clearZSeedInitialScanFromTip = () =>
+  AsyncStorage.removeItem(ZSEED_INITIAL_SCAN_FROM_TIP);
+
+/**
  * This function fetches the verus_mobile_version object from async
  * storage and returns one of three options. 1 if the stored version is 
  * greater than the current version, 0 if the stored and current version match,
