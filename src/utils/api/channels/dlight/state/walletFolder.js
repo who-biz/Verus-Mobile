@@ -27,7 +27,7 @@ export const setConfig = async (coinId, coinProto, accountHash, host, port, seed
     /**
      * @type {InitializerConfig}
      */
-    const birthday = scanFromTip ? 4050000 : VRSC_SAPLING_ACTIVATION_HEIGHT;
+    const birthday = scanFromTip ? VRSC_MAINNET_MAX_CHECKPOINT_HEIGHT : VRSC_SAPLING_ACTIVATION_HEIGHT;
     const config = {
       mnemonicSeed: seed,
       extsk: extsk ? await Tools.bech32Decode(extsk) : extsk,
